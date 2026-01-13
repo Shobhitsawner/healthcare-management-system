@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Add Medical Record - Healthcare{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <div>
+            <h1>Add Medical Record</h1>
+            <p class="page-description">Patient: {{ patient.first_name }} {{ patient.last_name }} ({{ patient.patient_id }})</p>
+        </div>
+    </div>
+    
+    <form method="POST" action="/medical-records/add/{{ patient.id }}" class="form-card">
+        <div class="form-section">
+            <h3 class="form-section-title">Visit Information</h3>
+            <div class="form-grid">
+                <div class="form-field full-width">
+                    <label for="visit_date">Visit Date</label>
+                    <input type="date" id="visit_date" name="visit_date" required>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3 class="form-section-title">Medical Details</h3>
+            <div class="form-grid">
+                <div class="form-field full-width">
+                    <label for="diagnosis">Diagnosis</label>
+                    <textarea id="diagnosis" name="diagnosis" rows="3" placeholder="Enter the diagnosis" required></textarea>
+                </div>
+                
+                <div class="form-field full-width">
+                    <label for="treatment">Treatment Plan</label>
+                    <textarea id="treatment" name="treatment" rows="4" placeholder="Describe the treatment plan" required></textarea>
+                </div>
+                
+                <div class="form-field full-width">
+                    <label for="notes">Additional Notes</label>
+                    <textarea id="notes" name="notes" rows="4" placeholder="Any additional observations or notes (optional)"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-actions">
+            <a href="/patients/{{ patient.id }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Add Record</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

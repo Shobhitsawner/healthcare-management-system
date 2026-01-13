@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Healthcare System{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% if user %}
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Healthcare</span>
+                </div>
+            </div>
+            <div class="nav-center">
+                <a href="/dashboard" class="nav-link">Dashboard</a>
+                <a href="/patients" class="nav-link">Patients</a>
+            </div>
+            <div class="nav-right">
+                <div class="user-menu">
+                    <div class="user-avatar">{{ user.full_name[0] }}</div>
+                    <div class="user-details">
+                        <span class="user-name">{{ user.full_name }}</span>
+                        <span class="user-role">{{ user.role.value }}</span>
+                    </div>
+                </div>
+                <a href="/logout" class="btn-logout">Sign Out</a>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+    
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+    
+    {% if user %}
+    <footer class="footer">
+        <div class="footer-container">
+            <p>© 2024 Healthcare Management System. All rights reserved.</p>
+        </div>
+    </footer>
+    {% endif %}
+</body>
+</html>

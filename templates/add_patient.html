@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Add Patient - Healthcare{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <div>
+            <h1>Add New Patient</h1>
+            <p class="page-description">Enter patient information to create a new record</p>
+        </div>
+    </div>
+    
+    {% if error %}
+    <div class="message error">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>{{ error }}</span>
+    </div>
+    {% endif %}
+    
+    <form method="POST" action="/patients/add" class="form-card">
+        <div class="form-section">
+            <h3 class="form-section-title">Patient Identification</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="patient_id">Patient ID</label>
+                    <input type="text" id="patient_id" name="patient_id" pattern="P[0-9]{6}" placeholder="P000001" required>
+                    <span class="field-hint">Format: P000001</span>
+                </div>
+                
+                <div class="form-field">
+                    <label for="blood_type">Blood Type</label>
+                    <select id="blood_type" name="blood_type">
+                        <option value="">Not specified</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3 class="form-section-title">Personal Information</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" required>
+                </div>
+                
+                <div class="form-field">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" required>
+                </div>
+                
+                <div class="form-field full-width">
+                    <label for="date_of_birth">Date of Birth</label>
+                    <input type="date" id="date_of_birth" name="date_of_birth" required>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3 class="form-section-title">Contact Information</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="555-123-4567" required>
+                </div>
+                
+                <div class="form-field">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="patient@example.com" required>
+                </div>
+                
+                <div class="form-field full-width">
+                    <label for="address">Home Address</label>
+                    <textarea id="address" name="address" rows="3" required></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-actions">
+            <a href="/patients" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Add Patient</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

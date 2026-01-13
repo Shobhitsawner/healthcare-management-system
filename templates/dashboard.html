@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Healthcare{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <div>
+            <h1>Dashboard</h1>
+            <p class="page-description">Welcome back, {{ user.full_name }}</p>
+        </div>
+    </div>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <h3>Manage Patients</h3>
+                <p>View and manage patient records</p>
+            </div>
+            <a href="/patients" class="stat-link">
+                View Patients
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <polyline points="12 5 19 12 12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <h3>Add New Patient</h3>
+                <p>Register a new patient in the system</p>
+            </div>
+            <a href="/patients/add" class="stat-link">
+                Add Patient
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <polyline points="12 5 19 12 12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <h3>Medical Records</h3>
+                {% if patient %}
+                    <p>Manage records for {{ patient.full_name }}</p>
+                    <a href="/medical-records/add/{{ patient.id }}" class="btn btn-secondary btn-sm">Add First Record</a>
+                {% else %}
+                    <p>No active patient selected</p>
+                    <a href="/patients" class="btn btn-secondary btn-sm">Select Patient</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-actions">
+        <a href="/patients" class="btn btn-secondary">Back to Patients</a>
+    </div>
+</div>
+{% endblock %}
